@@ -7,13 +7,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.maquillaje.navigation.Screen
-import com.example.maquillaje.data.AppLanguage
 import com.example.maquillaje.viewmodel.LanguageViewModel
+import com.example.maquillaje.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,46 +22,10 @@ fun MainMenuScreen(
     navController: NavController,
     viewModel: LanguageViewModel
 ) {
-    var showLanguageMenu by remember { mutableStateOf(false) }
-    val currentLanguage by viewModel.currentLanguage.collectAsStateWithLifecycle()
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Ladybug") },
-                actions = {
-                    Box {
-                        IconButton(onClick = { showLanguageMenu = true }) {
-                            Icon(
-                                imageVector = Icons.Default.Settings,
-                                contentDescription = "Seleccionar idioma"
-                            )
-                        }
-                        
-                        DropdownMenu(
-                            expanded = showLanguageMenu,
-                            onDismissRequest = { showLanguageMenu = false }
-                        ) {
-                            AppLanguage.supportedLanguages.forEach { language ->
-                                DropdownMenuItem(
-                                    text = {
-                                        Row(
-                                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-                                            Text(language.flag)
-                                            Text(language.name)
-                                        }
-                                    },
-                                    onClick = {
-                                        viewModel.setLanguage(language)
-                                        showLanguageMenu = false
-                                    }
-                                )
-                            }
-                        }
-                    }
-                }
+                title = { Text(stringResource(R.string.main_title)) }
             )
         }
     ) { paddingValues ->
@@ -73,12 +38,12 @@ fun MainMenuScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Ladybug",
+                text = stringResource(R.string.main_title),
                 style = MaterialTheme.typography.headlineLarge
             )
             
             Text(
-                text = "Toma una foto y descubre más sobre tu maquillaje.",
+                text = stringResource(R.string.main_description),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
@@ -92,7 +57,7 @@ fun MainMenuScreen(
                     }
                 }
             ) {
-                Text("Tomar Foto")
+                Text(stringResource(R.string.btn_take_photo))
             }
             
             Button(
@@ -102,7 +67,7 @@ fun MainMenuScreen(
                     }
                 }
             ) {
-                Text("Cargar Foto")
+                Text(stringResource(R.string.btn_load_photo))
             }
             
             Button(
@@ -112,7 +77,7 @@ fun MainMenuScreen(
                     }
                 }
             ) {
-                Text("Configuración")
+                Text(stringResource(R.string.btn_settings))
             }
             
             Button(
@@ -122,8 +87,8 @@ fun MainMenuScreen(
                     }
                 }
             ) {
-                Text("Acerca De")
+                Text(stringResource(R.string.btn_about))
             }
         }
     }
-} 
+}

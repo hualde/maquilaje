@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ladybug</string>
+    
+    <!-- Main Menu -->
+    <string name="main_title">Ladybug</string>
+    <string name="main_description">Toma una foto y descubre más sobre tu maquillaje.</string>
+    <string name="btn_take_photo">Tomar Foto</string>
+    <string name="btn_load_photo">Cargar Foto</string>
+    <string name="btn_settings">Configuración</string>
+    <string name="btn_about">Acerca De</string>
+    <string name="btn_back">Regresar</string>
+    
+    <!-- Camera Screen -->
+    <string name="camera_title">Tomar Foto</string>
+    <string name="camera_guide">Centra tu rostro en el óvalo</string>
+    <string name="camera_button">Tomar Foto</string>
+    
+    <!-- Load Photo Screen -->
+    <string name="load_photo_title">Cargar Foto</string>
+    <string name="load_photo_description">Selecciona una foto de tu galería</string>
+    <string name="btn_select_photo">Seleccionar Foto</string>
+    <string name="photo_selected">Foto seleccionada</string>
+    <string name="btn_analyze_photo">Analizar Foto</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_title">Configuración</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_select_language">Seleccionar Idioma</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="settings_notifications">Notificaciones</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">Acerca De</string>
+    <string name="about_version">Versión 1.0</string>
+    <string name="about_developers">Desarrollado por:\nEquipo Ladybug</string>
+    
+    <!-- Toast Messages -->
+    <string name="toast_photo_success">Foto tomada correctamente</string>
+    <string name="toast_photo_error">Error al tomar la foto</string>
+</resources> 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ladybug</string>
+    
+    <!-- Main Menu -->
+    <string name="main_title">Ladybug</string>
+    <string name="main_description">Tire uma foto e descubra mais sobre sua maquiagem.</string>
+    <string name="btn_take_photo">Tirar Foto</string>
+    <string name="btn_load_photo">Carregar Foto</string>
+    <string name="btn_settings">Configurações</string>
+    <string name="btn_about">Sobre</string>
+    <string name="btn_back">Voltar</string>
+    
+    <!-- Camera Screen -->
+    <string name="camera_title">Tirar Foto</string>
+    <string name="camera_guide">Centre seu rosto no oval</string>
+    <string name="camera_button">Tirar Foto</string>
+    
+    <!-- Load Photo Screen -->
+    <string name="load_photo_title">Carregar Foto</string>
+    <string name="load_photo_description">Selecione uma foto da sua galeria</string>
+    <string name="btn_select_photo">Selecionar Foto</string>
+    <string name="photo_selected">Foto selecionada</string>
+    <string name="btn_analyze_photo">Analisar Foto</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_title">Configurações</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_notifications">Notificações</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">Sobre</string>
+    <string name="about_version">Versão 1.0</string>
+    <string name="about_developers">Desenvolvido por:\nEquipe Ladybug</string>
+    
+    <!-- Toast Messages -->
+    <string name="toast_photo_success">Foto tirada com sucesso</string>
+    <string name="toast_photo_error">Erro ao tirar foto</string>
+</resources> 

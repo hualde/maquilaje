@@ -7,9 +7,11 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.maquillaje.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -17,10 +19,10 @@ fun AboutScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Acerca De") },
+                title = { Text(stringResource(R.string.about_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.Filled.ArrowBack, "Regresar")
+                        Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(R.string.btn_back))
                     }
                 }
             )
@@ -35,7 +37,7 @@ fun AboutScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Ladybug",
+                text = stringResource(R.string.main_title),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center
             )
@@ -43,7 +45,7 @@ fun AboutScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "Versión 1.0",
+                text = stringResource(R.string.about_version),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
@@ -51,7 +53,7 @@ fun AboutScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(32.dp))
             
             Text(
-                text = "Desarrollado por:\nEquipo Ladybug",
+                text = stringResource(R.string.about_developers),
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center
             )

@@ -11,10 +11,13 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.maquillaje.R
 import com.example.maquillaje.camera.CameraPreview
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
@@ -29,25 +32,35 @@ fun TakePhotoScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Tomar Foto") },
+                title = { Text(stringResource(R.string.camera_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.Filled.ArrowBack, "Regresar")
+                        Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(R.string.btn_back))
                     }
                 }
             )
         }
     ) { paddingValues ->
         if (cameraPermissionState.status.isGranted) {
-            CameraPreview(
-                onImageCaptured = { uri ->
-                    Toast.makeText(context, "Foto tomada correctamente", Toast.LENGTH_SHORT).show()
-                    // TODO: Procesar la imagen
-                },
-                onError = { exception ->
-                    Toast.makeText(context, "Error al tomar la foto", Toast.LENGTH_SHORT).show()
-                }
-            )
+            Box(modifier = Modifier.fillMaxSize()) {
+                CameraPreview(
+                    onImageCaptured = { uri ->
+                        Toast.makeText(context, context.getString(R.string.toast_photo_success), Toast.LENGTH_SHORT).show()
+                    },
+                    onError = { exception ->
+                        Toast.makeText(context, context.getString(R.string.toast_photo_error), Toast.LENGTH_SHORT).show()
+                    }
+                )
+                
+                Text(
+                    text = stringResource(R.string.camera_guide),
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(top = 32.dp),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
         } else {
             Column(
                 modifier = Modifier
@@ -58,7 +71,7 @@ fun TakePhotoScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Se necesita permiso para usar la cámara",
+                    text = stringResource(R.string.camera_guide),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyLarge
                 )
@@ -66,7 +79,7 @@ fun TakePhotoScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(16.dp))
                 
                 Button(onClick = { cameraPermissionState.launchPermissionRequest() }) {
-                    Text("Solicitar Permiso")
+                    Text(stringResource(R.string.btn_take_photo))
                 }
             }
         }

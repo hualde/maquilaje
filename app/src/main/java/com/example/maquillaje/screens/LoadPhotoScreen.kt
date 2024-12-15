@@ -14,11 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.maquillaje.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,10 +37,10 @@ fun LoadPhotoScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Cargar Foto") },
+                title = { Text(stringResource(R.string.load_photo_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.Filled.ArrowBack, "Regresar")
+                        Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(R.string.btn_back))
                     }
                 }
             )
@@ -50,18 +52,20 @@ fun LoadPhotoScreen(navController: NavController) {
                 .padding(paddingValues)
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Selecciona una foto de tu galería",
+                text = stringResource(R.string.load_photo_description),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
             
+            Spacer(modifier = Modifier.height(32.dp))
+            
             Button(
                 onClick = { launcher.launch("image/*") }
             ) {
-                Text("Seleccionar Foto")
+                Text(stringResource(R.string.btn_select_photo))
             }
             
             selectedImageUri?.let { uri ->
@@ -76,19 +80,16 @@ fun LoadPhotoScreen(navController: NavController) {
                             .data(uri)
                             .crossfade(true)
                             .build(),
-                        contentDescription = "Foto seleccionada",
+                        contentDescription = stringResource(R.string.photo_selected),
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
                 }
                 
                 Button(
-                    onClick = { /* TODO: Procesar imagen */ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    )
+                    onClick = { /* TODO: Procesar imagen */ }
                 ) {
-                    Text("Analizar Foto")
+                    Text(stringResource(R.string.btn_analyze_photo))
                 }
             }
         }

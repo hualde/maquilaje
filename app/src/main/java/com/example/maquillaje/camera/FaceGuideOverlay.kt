@@ -22,8 +22,8 @@ fun FaceGuideOverlay(
         val centerX = size.width / 2
         val centerY = size.height / 2
         
-        // Calculamos el tamaño del óvalo
-        val ovalWidth = minOf(size.width, size.height) * 0.45f  // Ancho del óvalo
+        // Calculamos el tamaño del óvalo (aumentado a 80% del ancho de la pantalla)
+        val ovalWidth = minOf(size.width, size.height) * 0.80f  // Ancho del óvalo
         val ovalHeight = ovalWidth * 1.5f  // Alto del óvalo (1.5 veces el ancho para forma de rostro)
         
         // Dibujamos el óvalo
@@ -37,22 +37,8 @@ fun FaceGuideOverlay(
             style = Stroke(width = strokeWidth)
         )
         
-        // Marcas de referencia
+        // Marcas de referencia horizontales
         val markLength = ovalWidth * 0.1f
-        
-        // Marcas verticales (superior e inferior)
-        drawLine(
-            color = color,
-            start = Offset(centerX, centerY - ovalHeight / 2),
-            end = Offset(centerX, centerY - ovalHeight / 2 + markLength),
-            strokeWidth = strokeWidth
-        )
-        drawLine(
-            color = color,
-            start = Offset(centerX, centerY + ovalHeight / 2),
-            end = Offset(centerX, centerY + ovalHeight / 2 - markLength),
-            strokeWidth = strokeWidth
-        )
         
         // Marcas horizontales (izquierda y derecha)
         drawLine(
@@ -63,17 +49,9 @@ fun FaceGuideOverlay(
         )
         drawLine(
             color = color,
-            start = Offset(centerX + ovalWidth / 2, centerY),
-            end = Offset(centerX + ovalWidth / 2 - markLength, centerY),
+            start = Offset(centerX + ovalWidth / 2 - markLength, centerY),
+            end = Offset(centerX + ovalWidth / 2, centerY),
             strokeWidth = strokeWidth
         )
-        
-        // Opcional: Línea central vertical para ayudar con la simetría
-        drawLine(
-            color = color.copy(alpha = 0.3f),  // Más transparente que el óvalo principal
-            start = Offset(centerX, centerY - ovalHeight / 2 + markLength),
-            end = Offset(centerX, centerY + ovalHeight / 2 - markLength),
-            strokeWidth = strokeWidth / 2
-        )
     }
-} 
+}
