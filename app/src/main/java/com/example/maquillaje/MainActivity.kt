@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,8 +19,11 @@ import com.example.maquillaje.screens.SettingsScreen
 import com.example.maquillaje.screens.TakePhotoScreen
 import com.example.maquillaje.screens.LoadPhotoScreen
 import com.example.maquillaje.ui.theme.MaquillajeTheme
+import com.example.maquillaje.viewmodel.LanguageViewModel
 
 class MainActivity : ComponentActivity() {
+    private val languageViewModel: LanguageViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.MainMenu.route
                     ) {
                         composable(Screen.MainMenu.route) {
-                            MainMenuScreen(navController)
+                            MainMenuScreen(navController, languageViewModel)
                         }
                         composable(Screen.TakePhoto.route) {
                             TakePhotoScreen(navController)

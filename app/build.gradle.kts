@@ -72,4 +72,9 @@ dependencies {
 
     // Coil para cargar imágenes
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 }

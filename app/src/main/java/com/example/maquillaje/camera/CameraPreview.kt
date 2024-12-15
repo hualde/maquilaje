@@ -5,11 +5,13 @@ import android.net.Uri
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
@@ -63,6 +65,17 @@ fun CameraPreview(
         AndroidView(
             factory = { previewView },
             modifier = Modifier.fillMaxSize()
+        )
+        
+        FaceGuideOverlay()
+        
+        Text(
+            text = "Centra tu rostro en el círculo",
+            color = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 32.dp),
+            style = MaterialTheme.typography.bodyLarge
         )
         
         Button(
