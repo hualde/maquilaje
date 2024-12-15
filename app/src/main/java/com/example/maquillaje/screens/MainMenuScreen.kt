@@ -2,7 +2,7 @@ package com.example.maquillaje.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.maquillaje.navigation.Screen
-import com.example.maquillaje.data.Language
+import com.example.maquillaje.data.AppLanguage
 import com.example.maquillaje.viewmodel.LanguageViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +32,7 @@ fun MainMenuScreen(
                     Box {
                         IconButton(onClick = { showLanguageMenu = true }) {
                             Icon(
-                                imageVector = Icons.Default.Language,
+                                imageVector = Icons.Default.Settings,
                                 contentDescription = "Seleccionar idioma"
                             )
                         }
@@ -41,7 +41,7 @@ fun MainMenuScreen(
                             expanded = showLanguageMenu,
                             onDismissRequest = { showLanguageMenu = false }
                         ) {
-                            Language.supportedLanguages.forEach { language ->
+                            AppLanguage.supportedLanguages.forEach { language ->
                                 DropdownMenuItem(
                                     text = {
                                         Row(

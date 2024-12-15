@@ -1,17 +1,39 @@
 package com.example.maquillaje.viewmodel
 
-import androidx.lifecycle.ViewModel
-import com.example.maquillaje.data.Language
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.maquillaje.data.AppLanguage
+import com.example.maquillaje.data.PreferencesManager
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-class LanguageViewModel : ViewModel() {
-    private val _currentLanguage = MutableStateFlow(Language.supportedLanguages[0])
-    val currentLanguage: StateFlow<Language> = _currentLanguage.asStateFlow()
+class LanguageViewModel(application: Application) : AndroidViewModel(application) {
+    private val preferencesManager = PreferencesManager(application)
+    
+    private val defaultLanguage = AppLanguage.supportedLanguages.find { it.code == "en" }
+        ?: AppLanguage.supportedLanguages[0]
+    
+    private val _currentLanguage = MutableStateFlow(defaultLanguage)
+    val currentLanguage: StateFlow<AppLanguage> = _currentLanguage.asStateFlow()
 
-    fun setLanguage(language: Language) {
-        _currentLanguage.value = language
-        // TODO: Implementar la persistencia del idioma seleccionado
+    init {
+        viewModelScope.launch {
+            preferencesManager.languageCode
+                .map { code ->
+                    AppLanguage.supportedLanguages.find { it.code == code }
+                        ?: defaultLanguage
+                }
+                .collect { language ->
+                    _currentLanguage.value = language
+                }
+        }
+    }
+
+    fun setLanguage(language: AppLanguage) {
+        viewModelScope.launch {
+            preferencesManager.saveLanguageCode(language.code)
+            _currentLanguage.value = language
+        }
     }
 } 
